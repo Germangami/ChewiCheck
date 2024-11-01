@@ -1,1 +1,6 @@
-<button class="button">CLICK</button>
+
+@if (isOwner) {
+    <button class="button">Добавь клиента</button>
+} @else {
+    <button class="button">Отметить занятие</button>
+}

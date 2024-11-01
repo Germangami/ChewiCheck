@@ -15,4 +15,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 })
 export class AppComponent {
   title = 'ChewiCheck';
+
+  owner = true;
 }
