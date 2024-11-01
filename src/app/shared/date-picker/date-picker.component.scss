@@ -1,9 +1,6 @@
-:host {
-    display: flex;
-    justify-content: center;
-    margin-top: 32px;
-}
-
 .demo-inline-calendar-card {
     width: 300px;
+    @media screen and (max-width: 576px) {
+        width: 100%;
+    }
 }
