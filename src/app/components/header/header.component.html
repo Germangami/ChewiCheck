@@ -1,0 +1,18 @@
+<div class="custom-mat-toolbar">
+  <mat-toolbar>
+    <mat-icon>supervised_user_circle</mat-icon>
+
+    <p>{{user?.first_name}} {{user?.last_name}}</p>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" class="custom-cdk-overlay-pane">
+      <button mat-menu-item (click)="close()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Close</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

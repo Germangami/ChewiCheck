@@ -10,11 +10,13 @@ import { withNgxsLoggerPlugin } from '@ngxs/logger-plugin';
 import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 import { withNgxsWebSocketPlugin } from '@ngxs/websocket-plugin';
 import { provideStore } from '@ngxs/store';
+import { provideHttpClient } from '@angular/common/http';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(),
     provideRouter(routes), 
     provideClientHydration(), 
     provideAnimationsAsync(), 

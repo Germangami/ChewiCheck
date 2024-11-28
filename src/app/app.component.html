@@ -1,18 +1,11 @@
 <div class="page">
-  <div class="page__header">
-    <div class="header-container">
-      <app-header/>
+    <div class="page__header">
+        <app-header></app-header>
     </div>
-  </div>
-  <div class="page__content">
-    <div class="main-container">
-      <router-outlet></router-outlet>
-      <app-date-picker ngSkipHydration/>
+    <div class="page__main">
+        <router-outlet></router-outlet>
     </div>
-  </div>
-  <div class="page__footer">
-    <div class="footer-container">
-      <app-footer [isOwner]="owner"/>
+    <div class="page__footer">
+        <h1>foooter</h1>
     </div>
-  </div>
 </div>
