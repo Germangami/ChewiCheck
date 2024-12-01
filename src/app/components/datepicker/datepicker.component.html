@@ -1,0 +1,10 @@
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"/>
+</mat-card>
+<p>Selected date: {{ selected() | date: 'dd.MM.yyyy' }}</p>
+
+<button mat-flat-button
+        [disabled]="isDateSelected"
+        (click)="selectedCurrentDate()">
+        {{isDateSelected ? 'Посещение отмечено' : 'Отметить посещение'}}
+</button>

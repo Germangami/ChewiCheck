@@ -4,6 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { TelegraService } from '../../shared/services/telegram';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
 
 export interface TelegramUser {
   allows_write_to_pm: boolean;
@@ -18,7 +19,13 @@ export interface TelegramUser {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [
+    MatToolbarModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatMenuModule, 
+    MatCardModule
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -27,7 +34,7 @@ export class HeaderComponent implements OnInit {
   telegramService: TelegraService = inject(TelegraService);
 
   tg: any;
-  user: TelegramUser;
+  user: TelegramUser | undefined;
 
   ngOnInit() {
     this.tg = this.telegramService.initTelegramWebApp();

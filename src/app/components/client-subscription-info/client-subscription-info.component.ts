@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { ClientModel } from '../../state/client/client.state';
 
 @Component({
   selector: 'app-client-subscription-info',
@@ -12,4 +13,6 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class ClientSubscriptionInfoComponent {
 
+  @Input()
+  client: ClientModel | undefined;
 }

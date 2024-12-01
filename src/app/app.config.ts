@@ -11,6 +11,7 @@ import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 import { withNgxsWebSocketPlugin } from '@ngxs/websocket-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideHttpClient } from '@angular/common/http';
+import { ClientState } from './state/client/client.state';
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,10 +21,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(), 
     provideAnimationsAsync(), 
-    provideStore([],
+    provideStore([
+      ClientState
+    ],
       withNgxsReduxDevtoolsPlugin(),
       withNgxsLoggerPlugin(),
-      withNgxsStoragePlugin({keys: '*'}),
+      // withNgxsStoragePlugin({keys: '*'}),
       withNgxsWebSocketPlugin()
     ),
   ]
