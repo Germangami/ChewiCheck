@@ -28,6 +28,7 @@
     "@ngxs/logger-plugin": "18.1.4",
     "@ngxs/storage-plugin": "18.1.4",
     "@ngxs/websocket-plugin": "18.1.4",
+    "@telegram-apps/sdk": "^2.9.1",
     "@twa-dev/sdk": "^7.10.1",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",

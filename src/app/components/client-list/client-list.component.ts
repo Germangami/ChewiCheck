@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, viewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, viewChild} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { ClientSubscriptionInfoComponent } from '../client-subscription-info/client-subscription-info.component';
+import { ApiService, User } from '../../shared/services/api.service';
 
 @Component({
   selector: 'app-client-list',
@@ -28,5 +29,20 @@ import { ClientSubscriptionInfoComponent } from '../client-subscription-info/cli
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientListComponent {
+
+  apiService = inject(ApiService);
+
+  users: User[];
+
+  ngOnInit() {
+    this.showUser();
+  }
+
+  showUser() {
+    this.apiService.showUser().subscribe((response: User[]) => {
+      this.users = response;
+      console.log(this.users, 'USERS!')
+    });
+  }
 
 }

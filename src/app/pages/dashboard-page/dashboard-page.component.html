@@ -1,4 +1,4 @@
-@if (telegramService.initDataUnsafe?.user?.id === 469408413) {
+<!-- @if (telegramService.initDataUnsafe?.user?.id !== 469408413) {
     <app-client-list/>
 } @else {
     <mat-card appearance="outlined" class="mb-2">
@@ -7,13 +7,8 @@
             [client]="client"/>
         </mat-card-content>
     </mat-card>
-}
+} -->
 
-<!-- <mat-card appearance="outlined" class="mb-2">
-    <mat-card-content>
-        <app-client-subscription-info
-        [client]="client"/>
-    </mat-card-content>
-</mat-card> -->
+<app-client-list/>
 
 <app-datepicker/>

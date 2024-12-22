@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ApiService } from './shared/services/api.service';
+import { TelegraService } from './shared/services/telegram';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,27 +16,22 @@ import { ApiService } from './shared/services/api.service';
 export class AppComponent {
 
   title = 'ChewiCheck';
+  ApiService = inject(ApiService);
+  telegramService = inject(TelegraService);
+  http = inject(HttpClient);
 
-  constructor(private ApiService: ApiService) {
-
+  tg: any;
+  user: {first_name: string, last_name: string, id: number} = {
+    first_name: 'Ivan',
+    last_name: 'Kolobkow',
+    id: 3333
   }
 
   ngOnInit() {
     if (window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
-    }
-  }
-
-  createUser() {
-    console.log('CREATE USER CLICK!')
-    const user = {
-      author: "TEST USER",
-      title: "TEST USER",
-      content: "Send new http post"
-    }
-    this.ApiService.createNewUser(user).subscribe(response => {
-      console.log(response, 'RESPONSE!')
-    })
+      this.tg = this.telegramService.initTelegramWebApp();
+    };
   }
 
 }

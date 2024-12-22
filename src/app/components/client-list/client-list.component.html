@@ -1,29 +1,17 @@
 <mat-card appearance="outlined">
     <mat-card-content>
-        <mat-accordion class="example-headers-align" multi>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title> Ivan Atlas </mat-panel-title>
-                </mat-expansion-panel-header>
-            
-                <app-client-subscription-info></app-client-subscription-info>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title> Ivan Atlas </mat-panel-title>
-                </mat-expansion-panel-header>
-            
-                <app-client-subscription-info></app-client-subscription-info>
-            </mat-expansion-panel>
-            
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title> Ivan Atlas </mat-panel-title>
-                </mat-expansion-panel-header>
-            
-                <app-client-subscription-info></app-client-subscription-info>
-            </mat-expansion-panel>
+        @if (users.length > 0) {
+            <mat-accordion class="example-headers-align" multi>
+                @for (user of users; track $index) {
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>{{user.first_name}} {{user.last_name}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                    
+                        <app-client-subscription-info></app-client-subscription-info>
+                    </mat-expansion-panel>
+                }
             </mat-accordion>
+    }
     </mat-card-content>
 </mat-card>
