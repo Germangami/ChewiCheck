@@ -1,14 +1,16 @@
-import {ChangeDetectionStrategy, Component, inject, viewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, inject} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
-import { ClientSubscriptionInfoComponent } from '../client-subscription-info/client-subscription-info.component';
-import { ApiService, User } from '../../shared/services/api.service';
+import {ClientSubscriptionInfoComponent} from '../client-subscription-info/client-subscription-info.component';
+import {User} from '../../shared/services/api.service';
+import { TelegraService } from '../../shared/services/telegram';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-client-list',
@@ -22,7 +24,8 @@ import { ApiService, User } from '../../shared/services/api.service';
     MatInputModule,
     MatDatepickerModule,
     MatCardModule,
-    ClientSubscriptionInfoComponent
+    ClientSubscriptionInfoComponent,
+    CommonModule
   ],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.scss',
@@ -30,19 +33,21 @@ import { ApiService, User } from '../../shared/services/api.service';
 })
 export class ClientListComponent {
 
-  apiService = inject(ApiService);
-
+  @Input()
   users: User[];
+  telegramService = inject(TelegraService);
+
+  title = 'ChewiCheck';
+  tg: any;
+  colorScheme: string;
+  isDarkTheme = false;
 
   ngOnInit() {
-    this.showUser();
+    if (window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      this.tg = this.telegramService.initTelegramWebApp();
+      this.isDarkTheme = this.tg.colorScheme === 'dark';
+      console.log(this.colorScheme, 'CHECK CHECK CHECK !@#!@#!@3213123123!')
+    };
   }
-
-  showUser() {
-    this.apiService.showUser().subscribe((response: User[]) => {
-      this.users = response;
-      console.log(this.users, 'USERS!')
-    });
-  }
-
 }

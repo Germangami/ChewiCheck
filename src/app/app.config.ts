@@ -12,6 +12,7 @@ import { withNgxsWebSocketPlugin } from '@ngxs/websocket-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideHttpClient } from '@angular/common/http';
 import { ClientState } from './state/client/client.state';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 export const appConfig: ApplicationConfig = {
@@ -29,5 +30,6 @@ export const appConfig: ApplicationConfig = {
       // withNgxsStoragePlugin({keys: '*'}),
       withNgxsWebSocketPlugin()
     ),
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}
   ]
 };

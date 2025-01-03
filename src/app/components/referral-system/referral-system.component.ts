@@ -61,10 +61,4 @@ export class ReferralSystemComponent {
       alert('Invite link copied to clipboard!');
     });
   }
-
-  showUser() {
-    this.http.get(`http://localhost:5000/api/referrals`).subscribe(x => {
-      console.log(x, 'SHOW USER!')
-    })
-  }
 }

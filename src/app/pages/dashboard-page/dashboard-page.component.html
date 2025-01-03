@@ -1,14 +1,12 @@
-<!-- @if (telegramService.initDataUnsafe?.user?.id !== 469408413) {
-    <app-client-list/>
+@if(currentUser?.type === 'Coach') {
+    <app-client-list [users]="users"/>
 } @else {
-    <mat-card appearance="outlined" class="mb-2">
+    <mat-card appearance="outlined">
         <mat-card-content>
-            <app-client-subscription-info
-            [client]="client"/>
+            <app-client-subscription-info [currentUser]="currentUser"/>
         </mat-card-content>
     </mat-card>
-} -->
-
-<app-client-list/>
-
-<app-datepicker/>
+}
+<div class="mt-2">
+    <app-datepicker [currentUser]="currentUser"/>
+</div>

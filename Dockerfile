@@ -25,4 +25,4 @@ FROM nginx:latest
 COPY --from=build /app/dist/chewi-check/browser /usr/share/nginx/html
 
 # Открываем порт 80 для nginx
-EXPOSE 80
+EXPOSE 4200

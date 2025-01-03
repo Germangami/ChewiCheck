@@ -1,8 +1,23 @@
-<p class="client-subscription-info">Абонементная информация</p>
-
-<div class="client-subscription-info">
-  <p>Дата начала: {{client?.startDate}}</p>
-  <p>Дата окончания: {{client?.endDate}}</p>
-  <p>Осталось занятий: {{client?.remainingTrainings}}</p>
-  <p>Срок действия: {{client?.totalTrainings}}</p>
-</div>
+@if(!client?.membershipType) {
+  <p class="client-subscription-info">
+    Абонементная информация не выбрана
+  </p>
+  <mat-form-field appearance = 'outline'>
+    <mat-label>Выбрать абонимент</mat-label>
+    <mat-select (selectionChange)="test($event)">
+      @for (aboniment of aboniments; track aboniment) {
+        <mat-option [value]="aboniment.value">{{aboniment.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+} @else {
+  <p class="client-subscription-info">
+    Абонементная информация
+  </p>
+  <div class="client-subscription-info">
+    <p>Дата начала: {{ client?.startDate ?  client?.startDate : 'Заполните данные'}}</p>
+    <p>Дата окончания: {{ client?.endDate }}</p>
+    <p>Осталось занятий: {{ client?.remainingTrainings }}</p>
+    <p>Срок действия: {{ client?.totalTrainings }}</p>
+  </div>
+}

@@ -3,7 +3,7 @@ import {State, Action, StateContext} from "@ngxs/store";
 import { SelectedTraningDate } from "./client.actions";
 
 export interface ClientModel {
-    id: number;
+    tgId: number;
     first_name: string;
     last_name: string;
     startDate: any;
@@ -16,7 +16,7 @@ export interface ClientModel {
 @State<ClientModel>({
     name: 'client',
     defaults: {
-        id: 1,
+        tgId: 1,
         first_name: 'Ivan',
         last_name: 'Kupalow',
         startDate: '01.12.2024',

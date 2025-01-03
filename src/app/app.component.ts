@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
-import { ApiService } from './shared/services/api.service';
 import { TelegraService } from './shared/services/telegram';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,23 +12,18 @@ import { HttpClient } from '@angular/common/http';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  telegramService = inject(TelegraService);
 
   title = 'ChewiCheck';
-  ApiService = inject(ApiService);
-  telegramService = inject(TelegraService);
-  http = inject(HttpClient);
-
   tg: any;
-  user: {first_name: string, last_name: string, id: number} = {
-    first_name: 'Ivan',
-    last_name: 'Kolobkow',
-    id: 3333
-  }
+  colorScheme: string;
 
   ngOnInit() {
     if (window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       this.tg = this.telegramService.initTelegramWebApp();
+      this.colorScheme = this.tg.colorScheme;
+      console.log(this.colorScheme, 'CHECK CHECK')
     };
   }
 
