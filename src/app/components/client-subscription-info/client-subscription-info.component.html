@@ -59,7 +59,7 @@
   @if(currentUser.membershipType) {
     <div class="client-subscription-info ">
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
         <mat-label>Заметка</mat-label>
         <textarea [placeholder]="currentUser.note ? currentUser.note : 'Ожидайте'" [readonly]="!isNoteChange" matInput></textarea>
         <mat-icon matSuffix>{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
