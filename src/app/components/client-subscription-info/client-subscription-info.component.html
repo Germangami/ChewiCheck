@@ -53,20 +53,24 @@
 
   @if (user.membershipType) {
     <div class="client-subscription-info ">
-      <mat-form-field>
-        <mat-label>Заметка</mat-label>
-        <textarea matInput></textarea>
-        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>{{user.nickname ? 'Никнейм добавлен' : 'Добавить никнейм'}}</mat-label>
-        <input matInput 
-        [readonly]="!isNickNameChange"
-        [placeholder]="user.nickname ? user.nickname : 'Ввести никнейм'"
-        (input)="addUserNickName($event)">
-        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
-      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <mat-label>Заметка</mat-label>
+          <textarea [readonly]="!isNoteChange" matInput></textarea>
+          <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>{{user.nickname ? 'Никнейм добавлен' : 'Добавить никнейм'}}</mat-label>
+          <input matInput 
+          [readonly]="!isNickNameChange"
+          [placeholder]="user.nickname ? user.nickname : 'Ввести никнейм'"
+          (input)="addUserNickName($event)">
+          <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+        </mat-form-field>
+      </div>
   
       <p>Дата начала: {{ user.startDate }}</p>
       <p>Дата окончания: {{ user.endDate }}</p>
@@ -101,6 +105,12 @@
  @if(currentUser && !user) {
   @if(currentUser.membershipType) {
     <div class="client-subscription-info ">
+
+      <mat-form-field>
+        <mat-label>Заметка</mat-label>
+        <textarea [readonly]="!isNoteChange" matInput></textarea>
+        <mat-icon matSuffix>{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+      </mat-form-field>
   
       <mat-form-field appearance="outline">
         <mat-label>{{currentUser.nickname ? 'Никнейм добавлен' : 'Никнейм не добавлен'}}</mat-label>

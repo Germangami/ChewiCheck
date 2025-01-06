@@ -157,6 +157,12 @@ body {
 }
 
 //MAT-FORM-FIELD tex-area
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color: red !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--tg-theme-text-color) !important;
+}
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
   border-color: var(--tg-theme-text-color) !important;
 }
