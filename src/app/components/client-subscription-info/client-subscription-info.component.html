@@ -57,7 +57,7 @@
         <mat-form-field>
           <mat-label>Заметка</mat-label>
           <textarea [readonly]="!isNoteChange" matInput></textarea>
-          <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+          <mat-icon matSuffix (click)="changeUserNote($event)">{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
         </mat-form-field>
       </div>
 

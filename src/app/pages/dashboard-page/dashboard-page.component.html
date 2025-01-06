@@ -10,10 +10,7 @@
 <div class="mt-2">
     <app-datepicker [currentUser]="currentUser"/>
 </div> -->
-<mat-form-field>
-    <mat-label>Заметка</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+
 @if (users.length > 0 && currentUser.type === 'Coach') {
     <app-client-list
     [usersList]="users"
