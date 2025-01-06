@@ -54,9 +54,9 @@
   @if (user.membershipType) {
     <div class="client-subscription-info ">
       <div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Заметка</mat-label>
-          <textarea [readonly]="!isNoteChange" (input)="addUserNote($event)" matInput></textarea>
+          <textarea [placeholder]="user.note ? user.note : 'Оставить заметку'" [readonly]="!isNoteChange" (input)="addUserNote($event)" matInput></textarea>
           <mat-icon matSuffix (click)="changeUserNote($event)">{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
         </mat-form-field>
       </div>
@@ -79,11 +79,11 @@
   
       <div class="button-container">
         @if (isNickNameChange) {
-          <button mat-flat-button (click)="saveChangeUserData()">Сохранить Изменения</button>
+          <button mat-flat-button (click)="saveChangeUserData()">Сохранить Никнейм</button>
         }
 
         @if (isNoteChange) {
-          <button mat-flat-button (click)="saveUserNote()">Сохранить Изменения</button>
+          <button mat-flat-button (click)="saveUserNote()">Сохранить Заметку</button>
         }
       </div>
   
@@ -112,7 +112,7 @@
 
       <mat-form-field>
         <mat-label>Заметка</mat-label>
-        <textarea [readonly]="!isNoteChange" matInput></textarea>
+        <textarea [placeholder]="currentUser.note ? currentUser.note : 'Ожидайте'" [readonly]="!isNoteChange" matInput></textarea>
         <mat-icon matSuffix>{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
       </mat-form-field>
   
