@@ -76,15 +76,10 @@ export class ClientSubscriptionInfoComponent {
   }
 
   saveChangeUserData() {
-    if (this.user.tgId && (this.newNickName || this.newNote)) {
+    if (this.user.tgId && this.newNickName) {
       // this.store.dispatch(new ChangeUserNickName(this.newNickName, this.user.tgId));
 
-      if (this.newNickName) {
-        this.user.nickname = this.newNickName;
-      }
-      if (this.newNote) {
-        this.user.note = this.newNote;
-      }
+      this.user.nickname = this.newNickName;
       
       this.apiService.updateUser(this.user).subscribe({
         next: (val) => {
@@ -94,6 +89,21 @@ export class ClientSubscriptionInfoComponent {
           console.error('Ошибка при обновлении данных:', error);
         },
       });
+    }
+  }
+
+  saveUserNote() {
+    if (this.user.tgId && this.newNote) {
+        this.user.note = this.newNote;
+
+        this.apiService.updateUser(this.user).subscribe({
+          next: (val) => {
+            console.log('Данные обновлены:', val);
+          },
+          error: (error) => {
+            console.error('Ошибка при обновлении данных:', error);
+          },
+        });
     }
   }
 
