@@ -79,12 +79,13 @@ export class ClientSubscriptionInfoComponent {
     if (this.user.tgId && (this.newNickName || this.newNote)) {
       // this.store.dispatch(new ChangeUserNickName(this.newNickName, this.user.tgId));
 
-      if(this.newNickName) {
+      if (this.newNickName) {
         this.user.nickname = this.newNickName;
       }
-      if(this.newNote) {
+      if (this.newNote) {
         this.user.note = this.newNote;
       }
+      
       this.apiService.updateUser(this.user).subscribe({
         next: (val) => {
           console.log('Данные обновлены:', val);

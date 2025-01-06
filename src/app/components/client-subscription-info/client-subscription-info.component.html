@@ -74,7 +74,7 @@
       <p>Осталось занятий: {{ user.remainingTrainings }}</p>
   
       <div class="button-container">
-        @if (isNickNameChange && newNickName) {
+        @if (isNickNameChange || isNoteChange) {
           <button mat-flat-button (click)="saveChangeUserData()">Сохранить Изменения</button>
         }
       </div>
