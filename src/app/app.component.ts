@@ -23,7 +23,6 @@ export class AppComponent {
 
   title = 'ChewiCheck';
   tg: any;
-  colorScheme: string;
 
   ngOnInit() {
     this.initTelegramWebApp();
@@ -31,12 +30,9 @@ export class AppComponent {
   }
 
   initTelegramWebApp() {
-    console.log('INIT TELEGRAM!!!')
     if (window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       this.store.dispatch(new InitTelegramWebApp(window.Telegram.WebApp));
-      // this.tg = this.telegramService.initTelegramWebApp();
-      // this.colorScheme = this.tg.colorScheme;
     } else {
       return;
     }

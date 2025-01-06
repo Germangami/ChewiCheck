@@ -1,19 +1,28 @@
-@if( user?.membershipType) {
+<!-- <p>{{currentUser.type}} CURRENT USER TYPE</p>
+<p>{{user.type}} USER TYPE</p>
+
+@if (user.membershipType) {
   <div class="client-subscription-info ">
   
-    <p>Никнейм : {{user.nickname ? user.nickname : 'нету'}}</p>
     <mat-form-field appearance="outline">
-      <mat-label>Добавить никнейм</mat-label>
-      <input (input)="changeNickName($event)" matInput placeholder="Ввести никнейм">
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-hint>Hint</mat-hint>
+      <mat-label>{{user.nickname ? 'Никнейм добавлен' : 'Добавить никнейм'}}</mat-label>
+      <input matInput 
+      [readonly]="!isNickNameChange"
+      [placeholder]="user.nickname ? user.nickname : 'Ввести никнейм'"
+      (input)="addUserNickName($event)">
+      <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
     </mat-form-field>
+
     <p>Дата начала: {{ user.startDate }}</p>
     <p>Дата окончания: {{ user.endDate }}</p>
     <p>Всего занятий: {{ user.totalTrainings }}</p>
     <p>Осталось занятий: {{ user.remainingTrainings }}</p>
 
-    <button (click)="saveChangeUserData()">Сохранить</button>
+    <div class="button-container">
+      @if (isNickNameChange && newNickName) {
+        <button mat-flat-button (click)="saveChangeUserData()">Сохранить Изменения</button>
+      }
+    </div>
 
   </div>
 } @else {
@@ -21,15 +30,103 @@
 
     <p>Абонементная информация не выбрана</p>
 
-    <mat-form-field appearance = 'outline'>
-      <mat-label>Выбрать абонимент</mat-label>
-      <mat-select (selectionChange)="test($event)">
-        @for (aboniment of aboniments; track aboniment) {
-          <mat-option [value]="aboniment.value">{{aboniment.viewValue}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
+    @if (user.type === 'Coach') {
+      <mat-form-field appearance = 'outline'>
+        <mat-label>Выбрать абонимент</mat-label>
+        <mat-select (selectionChange)="test($event)">
+          @for (aboniment of aboniments; track aboniment) {
+            <mat-option [value]="aboniment.value">{{aboniment.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    } @else {
+      <p>Ожидайте Тренер заполняет данные</p>
+    }
+    
   </div>
-}
+} -->
 
+
+
+ @if (user && currentUser) {
+  СПИСОК ЮЗЕРОВ ДЛЯ ТРЕНЕРА {{currentUser.type}}
+
+  @if (user.membershipType) {
+    <div class="client-subscription-info ">
+      <mat-form-field>
+        <mat-label>Заметка</mat-label>
+        <textarea matInput></textarea>
+        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>{{user.nickname ? 'Никнейм добавлен' : 'Добавить никнейм'}}</mat-label>
+        <input matInput 
+        [readonly]="!isNickNameChange"
+        [placeholder]="user.nickname ? user.nickname : 'Ввести никнейм'"
+        (input)="addUserNickName($event)">
+        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+      </mat-form-field>
+  
+      <p>Дата начала: {{ user.startDate }}</p>
+      <p>Дата окончания: {{ user.endDate }}</p>
+      <p>Всего занятий: {{ user.totalTrainings }}</p>
+      <p>Осталось занятий: {{ user.remainingTrainings }}</p>
+  
+      <div class="button-container">
+        @if (isNickNameChange && newNickName) {
+          <button mat-flat-button (click)="saveChangeUserData()">Сохранить Изменения</button>
+        }
+      </div>
+  
+    </div>
+  } @else {
+    <div class="client-subscription-info">
+
+      <p>Абонементная информация не выбрана</p>
+  
+      <mat-form-field appearance = 'outline'>
+        <mat-label>Выбрать абонимент</mat-label>
+        <mat-select (selectionChange)="test($event)">
+          @for (aboniment of aboniments; track aboniment) {
+            <mat-option [value]="aboniment.value">{{aboniment.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      
+    </div>
+  }
+ } 
+
+ @if(currentUser && !user) {
+  @if(currentUser.membershipType) {
+    <div class="client-subscription-info ">
+  
+      <mat-form-field appearance="outline">
+        <mat-label>{{currentUser.nickname ? 'Никнейм добавлен' : 'Никнейм не добавлен'}}</mat-label>
+        <input matInput 
+        [readonly]="!isNickNameChange"
+        [placeholder]="currentUser.nickname ? currentUser.nickname : 'Ожидайте'"
+        (input)="addUserNickName($event)">
+        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+      </mat-form-field>
+  
+      <p>Дата начала: {{ currentUser.startDate }}</p>
+      <p>Дата окончания: {{ currentUser.endDate }}</p>
+      <p>Всего занятий: {{ currentUser.totalTrainings }}</p>
+      <p>Осталось занятий: {{ currentUser.remainingTrainings }}</p>
+  
+      <div class="button-container">
+        @if (isNickNameChange && newNickName) {
+          <button mat-flat-button (click)="saveChangeUserData()">Сохранить Изменения</button>
+        }
+      </div>
+  
+    </div>
+  } @else {
+    <p>Ожидайте Тренер заполняет Ваши данные</p>
+  }
+  
+  ТЕКУЩИЙ ПОЛЬЗВАТЕЛЬ ДЛЯ КЛИЕНТА
+  
+ }

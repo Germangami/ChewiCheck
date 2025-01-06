@@ -10,6 +10,9 @@ import { User } from '../../state/client/client.state';
 import { ClientSelectors } from '../../state/client/client.selectors';
 import { TelegramSelectors } from '../../state/telegram/telegram.selectors';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,7 +22,8 @@ import { CommonModule } from '@angular/common';
     ClientSubscriptionInfoComponent, 
     ClientListComponent,
     DatepickerComponent,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule, MatInputModule, MatIconModule
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',

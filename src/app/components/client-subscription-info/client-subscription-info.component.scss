@@ -2,8 +2,7 @@
     color: var(--tg-theme-text-color);
 }
 
-.nickname {
+.button-container {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: center;
 }

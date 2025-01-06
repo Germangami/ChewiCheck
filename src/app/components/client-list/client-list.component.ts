@@ -40,10 +40,16 @@ export class ClientListComponent {
   }
 
   @Input()
+  set getCurrentUser(currentUser: User) {
+    this.currentUser = currentUser;
+  }
+
+  @Input()
   set getColorScheme(colorScheme: string) {
     this.colorScheme = colorScheme;
   };
 
   users: User[];
+  currentUser: User;
   colorScheme: string;
 }

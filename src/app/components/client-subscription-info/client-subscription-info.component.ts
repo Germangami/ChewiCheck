@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Output, inject} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { User } from '../../state/client/client.state';
 import {Store} from '@ngxs/store';
 import { ChangeUserNickName } from '../../state/client/client.actions';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-client-subscription-info',
@@ -26,33 +27,64 @@ export class ClientSubscriptionInfoComponent {
   changeDetectorRef = inject(ChangeDetectorRef);
 
   @Input()
-  set currentUser(user: User) {
+  set getCurrentUser(user: User) {
     if (user) {
-      this.user = user;
+      this.currentUser = user;
       console.log(this.user, 'USER CHECK')
     }
   }
 
+  @Input()
+  set getUserFromList(user: User) {
+    if (user) {
+      this.user = user;
+    }
+  }
+
   user: User;
+  currentUser: User;
   selectedValue: string;
   isNickNameChange = false;
+  isNoteChange = false;
   aboniments: {value: string, viewValue: string}[] = [
     {value: 'basic', viewValue: '200 zł'},
     {value: 'premium', viewValue: '300 zł'},
   ];
   newNickName: string;
+  newNote: string;
 
-  changeNickName(event: any) {
+  addUserNickName(event: any) {
     this.newNickName = event.target.value;
-    this.isNickNameChange = true;
+  }
+
+  addUserNote(event: any) {
+    this.newNote = event.target.value;
+  }
+
+  changeUserNickName(event: Event) {
+    if (this.currentUser.type === 'Coach') {
+      event.stopPropagation()
+      this.isNickNameChange = !this.isNickNameChange;
+    }
+  }
+
+  changeUserNote(event: Event) {
+    if (this.currentUser.type === 'Coach') {
+      event.stopPropagation()
+      this.isNoteChange = !this.isNoteChange;
+    }
   }
 
   saveChangeUserData() {
-    if (this.user.tgId && this.newNickName) {
-      console.log(this.user.tgId && this.newNickName, 'СМОТРИМ ДАННЫЕ ЕПТА')
+    if (this.user.tgId && (this.newNickName || this.newNote)) {
       // this.store.dispatch(new ChangeUserNickName(this.newNickName, this.user.tgId));
 
-      this.user.nickname = this.newNickName;
+      if(this.newNickName) {
+        this.user.nickname = this.newNickName;
+      }
+      if(this.newNote) {
+        this.user.note = this.newNote;
+      }
       this.apiService.updateUser(this.user).subscribe({
         next: (val) => {
           console.log('Данные обновлены:', val);

@@ -11,19 +11,19 @@
     <app-datepicker [currentUser]="currentUser"/>
 </div> -->
 
-@if (users.length > 0) {
-    <app-client-list 
+@if (users.length > 0 && currentUser.type === 'Client') {
+    <app-client-list
     [usersList]="users"
+    [getCurrentUser]="currentUser"
     [getColorScheme]="tgColorScheme$ | async"/>
 } @else {
     <mat-card>
         <mat-card-content>
-            <h1>Privet</h1>
+            <app-client-subscription-info [getCurrentUser]="currentUser"/>
         </mat-card-content>
     </mat-card>
 }
-<mat-card>
-    <mat-card-content>
-        <app-client-subscription-info [currentUser]="currentUser"/>
-    </mat-card-content>
-</mat-card>
+
+<div class="mt-2">
+    <app-datepicker [currentUser]="currentUser"/>
+</div>

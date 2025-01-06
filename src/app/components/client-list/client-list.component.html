@@ -1,3 +1,6 @@
+<h1>{{currentUser.first_name}} {{currentUser.type}}</h1>
+
+
 @if (users.length > 0) {
     <div [ngClass]="{'dark-theme': colorScheme === 'dark'}">
 
@@ -8,7 +11,7 @@
                         <mat-panel-title> {{user.first_name}} {{user.last_name}} {{user.nickname}}</mat-panel-title>
                         </mat-expansion-panel-header>
                     
-                        <app-client-subscription-info [currentUser]="user"/>
+                        <app-client-subscription-info [getCurrentUser]="currentUser" [getUserFromList]="user"/>
                     </mat-expansion-panel>
                 }
         </mat-accordion>

@@ -20,6 +20,7 @@ export interface User {
     totalTrainings?: number | null,
     type?: string | null,
     membershipType?: string | null,
+    note?: string | null,
     attendanceHistory?: AttendanceHistory[] | null,
 }
 
@@ -54,31 +55,31 @@ export class ClientState {
 
     @Action(ChangeUserNickName)
     changeUserNickName(ctx: StateContext<ClientModel>, action: ChangeUserNickName) {
-    const state = ctx.getState();
-    const userToUpdate = state.users.find(user => user.tgId === action.tgId);
+        const state = ctx.getState();
+        const userToUpdate = state.users.find(user => user.tgId === action.tgId);
 
-    if (!userToUpdate) {
-        console.error('User not found');
-        return;
+        if (!userToUpdate) {
+            console.error('User not found');
+            return;
+        }
+
+        const updatedUserData: Partial<User> = {
+            tgId: action.tgId,
+            nickname: action.nickName
+        };
+
+        // return this.apiService.updateUser(updatedUserData).pipe(
+        //     tap(updatedUser => {
+        //         const updatedUsers = state.users.map(user =>
+        //             user.tgId === updatedUser.tgId ? { ...user, nickname: updatedUser.nickname } : user
+        //         );
+
+        //         ctx.patchState({ users: updatedUsers });
+        //     }),
+        //     catchError(error => {
+        //         console.error('Failed to update user in DB:', error);
+        //         return of(null);
+        //     })
+        // ).subscribe();
     }
-
-    const updatedUserData: Partial<User> = {
-        tgId: action.tgId,
-        nickname: action.nickName
-    };
-
-    // return this.apiService.updateUser(updatedUserData).pipe(
-    //     tap(updatedUser => {
-    //         const updatedUsers = state.users.map(user =>
-    //             user.tgId === updatedUser.tgId ? { ...user, nickname: updatedUser.nickname } : user
-    //         );
-
-    //         ctx.patchState({ users: updatedUsers });
-    //     }),
-    //     catchError(error => {
-    //         console.error('Failed to update user in DB:', error);
-    //         return of(null);
-    //     })
-    // ).subscribe();
-}
 }

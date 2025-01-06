@@ -14,6 +14,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { ClientState } from './state/client/client.state';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { TelegramState } from './state/telegram/telegram.state';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 
 export const appConfig: ApplicationConfig = {
@@ -32,6 +33,7 @@ export const appConfig: ApplicationConfig = {
       // withNgxsStoragePlugin({keys: '*'}),
       withNgxsWebSocketPlugin()
     ),
-    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'}
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}}
   ]
 };
