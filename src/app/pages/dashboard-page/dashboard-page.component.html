@@ -1,21 +1,3 @@
-<!-- @if(currentUser?.type === 'Coach') {
-    <app-client-list [users]="users"/>
-} @else {
-    <mat-card appearance="outlined">
-        <mat-card-content>
-            <app-client-subscription-info [currentUser]="currentUser"/>
-        </mat-card-content>
-    </mat-card>
-}
-<div class="mt-2">
-    <app-datepicker [currentUser]="currentUser"/>
-</div> -->
-
-<mat-form-field appearance="outline">
-    <mat-label>Заметка</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-
 @if (users.length > 0 && currentUser.type === 'Coach') {
     <app-client-list
     [usersList]="users"
