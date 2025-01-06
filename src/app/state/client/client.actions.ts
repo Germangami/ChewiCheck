@@ -1,9 +1,11 @@
-export class GetClients {
-    static readonly type = '[Client] get clients';
+export class GetUsers {
+    static readonly type = '[Client] get users';
 }
 
-export class SelectedTraningDate {
-    static readonly type = '[Client] selected traning date';
+export class ChangeUserNickName {
+    static readonly type = '[Client] change user nickname';
 
-    constructor(public selectedDate: any) {}
+    constructor(public nickName: string, public tgId: number) {
+
+    }
 }

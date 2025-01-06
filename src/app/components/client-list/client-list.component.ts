@@ -8,9 +8,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {ClientSubscriptionInfoComponent} from '../client-subscription-info/client-subscription-info.component';
-import {User} from '../../shared/services/api.service';
 import { TelegraService } from '../../shared/services/telegram';
 import { CommonModule } from '@angular/common';
+import { User } from '../../state/client/client.state';
 
 @Component({
   selector: 'app-client-list',
@@ -32,22 +32,18 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientListComponent {
-
-  @Input()
-  users: User[];
   telegramService = inject(TelegraService);
 
-  title = 'ChewiCheck';
-  tg: any;
-  colorScheme: string;
-  isDarkTheme = false;
-
-  ngOnInit() {
-    if (window.Telegram.WebApp) {
-      window.Telegram.WebApp.ready();
-      this.tg = this.telegramService.initTelegramWebApp();
-      this.isDarkTheme = this.tg.colorScheme === 'dark';
-      console.log(this.colorScheme, 'CHECK CHECK CHECK !@#!@#!@3213123123!')
-    };
+  @Input()
+  set usersList(users: User[]) {
+    this.users = users;
   }
+
+  @Input()
+  set getColorScheme(colorScheme: string) {
+    this.colorScheme = colorScheme;
+  };
+
+  users: User[];
+  colorScheme: string;
 }

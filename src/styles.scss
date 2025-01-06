@@ -59,9 +59,17 @@ body {
   color: var(--tg-theme-text-color) !important;
 }
 
+.client-subscription-info-mat-icon {
+  
+}
+
 
 //MAT-CARD
 .mat-mdc-card-outlined {
+  background-color: var(--tg-theme-text-color) !important;
+}
+
+.mat-mdc-card {
   background-color: var(--tg-theme-bg-color) !important;
 }
 

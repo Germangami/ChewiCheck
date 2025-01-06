@@ -1,4 +1,4 @@
-@if(currentUser?.type === 'Coach') {
+<!-- @if(currentUser?.type === 'Coach') {
     <app-client-list [users]="users"/>
 } @else {
     <mat-card appearance="outlined">
@@ -9,4 +9,21 @@
 }
 <div class="mt-2">
     <app-datepicker [currentUser]="currentUser"/>
-</div>
+</div> -->
+
+@if (users.length > 0) {
+    <app-client-list 
+    [usersList]="users"
+    [getColorScheme]="tgColorScheme$ | async"/>
+} @else {
+    <mat-card>
+        <mat-card-content>
+            <h1>Privet</h1>
+        </mat-card-content>
+    </mat-card>
+}
+<mat-card>
+    <mat-card-content>
+        <app-client-subscription-info [currentUser]="currentUser"/>
+    </mat-card-content>
+</mat-card>

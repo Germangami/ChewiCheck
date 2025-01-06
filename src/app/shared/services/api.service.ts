@@ -1,20 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface User {
-  tgId?: number,
-  first_name?: string,
-  last_name?: string,
-  username?: string,
-  startDate?: string,
-  endDate?: string,
-  remainingTrainings?: number,
-  totalTrainings?: number,
-  type?: string,
-  membershipType?: string
-}
-
+import { User } from '../../state/client/client.state';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +12,10 @@ export class ApiService {
   // API_URL = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API_URL}/user`);
+  }
 
   showUser(): Observable<User[]> {
     return this.http.get<User[]>(`${this.API_URL}/user`);

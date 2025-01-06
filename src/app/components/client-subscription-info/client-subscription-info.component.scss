@@ -1,3 +1,9 @@
 .client-subscription-info {
     color: var(--tg-theme-text-color);
 }
+
+.nickname {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

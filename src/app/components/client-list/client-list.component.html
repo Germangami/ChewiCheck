@@ -1,20 +1,17 @@
-<mat-card appearance="outlined">
-    <mat-card-content>
-        @if (users.length > 0) {
-            <div [ngClass]="{'dark-theme': isDarkTheme}">
-                <mat-accordion multi>
-                    @for (user of users; track $index) {
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>{{user.first_name}} {{user.last_name}}</mat-panel-title>
-                            </mat-expansion-panel-header>
-                        
-                            <app-client-subscription-info [client]="user"></app-client-subscription-info>
-                        </mat-expansion-panel>
-                    }
-                </mat-accordion>
-            </div>
-            
-    }
-    </mat-card-content>
-</mat-card>
+@if (users.length > 0) {
+    <div [ngClass]="{'dark-theme': colorScheme === 'dark'}">
+
+        <mat-accordion multi> 
+                @for (user of users; track $index) {
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                        <mat-panel-title> {{user.first_name}} {{user.last_name}} {{user.nickname}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                    
+                        <app-client-subscription-info [currentUser]="user"/>
+                    </mat-expansion-panel>
+                }
+        </mat-accordion>
+
+    </div>
+}

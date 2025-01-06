@@ -13,6 +13,7 @@ import { provideStore } from '@ngxs/store';
 import { provideHttpClient } from '@angular/common/http';
 import { ClientState } from './state/client/client.state';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { TelegramState } from './state/telegram/telegram.state';
 
 
 export const appConfig: ApplicationConfig = {
@@ -23,7 +24,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(), 
     provideAnimationsAsync(), 
     provideStore([
-      ClientState
+      ClientState,
+      TelegramState
     ],
       withNgxsReduxDevtoolsPlugin(),
       withNgxsLoggerPlugin(),

@@ -6,9 +6,7 @@ import { Injectable } from "@angular/core";
 export class TelegraService {
 
     initTelegramWebApp() {
-        if (window.Telegram.WebApp) {
             const telegramWebApp = window.Telegram.WebApp;
             return telegramWebApp;
-        }
     }
 }

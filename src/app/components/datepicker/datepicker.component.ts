@@ -6,7 +6,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import moment from 'moment';
-import { ApiService, User } from '../../shared/services/api.service';
+import { ApiService } from '../../shared/services/api.service';
+import { User } from '../../state/client/client.state';
 
 @Component({
   selector: 'app-datepicker',
