@@ -1,4 +1,4 @@
-@if (users.length > 0 && currentUser?.type === 'Client') {
+@if (users.length > 0 && currentUser?.type === 'Coach') {
     <app-client-list
     [usersList]="users"
     [getCurrentUser]="currentUser"
