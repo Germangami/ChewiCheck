@@ -1,0 +1,12 @@
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.demo-inline-calendar-card {
+    @media screen and (max-width: 500px) {
+        width: 100%;        
+    }
+    width: 350px;
+}

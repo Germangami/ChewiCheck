@@ -1,10 +1,18 @@
-<mat-card class="demo-inline-calendar-card">
-    <mat-calendar [dateFilter]="myFilter" [(selected)]="selected"/>
+<!-- <mat-card class="demo-inline-calendar-card">
+    <mat-calendar [dateFilter]="myFilter" (dateChange)="test($event)"/>
 </mat-card>
 <p>Selected date: {{ selected() | date: 'dd.MM.yyyy' }}</p>
+
+{{selected}}
 
 <button mat-flat-button
         [disabled]="isDateSelected"
         (click)="markAttendance()">
         {{isDateSelected ? 'Посещение отмечено' : 'Отметить посещение'}}
-</button>
+</button> -->
+
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+  </mat-card>
+<p>Selected date: {{selected()}}</p>

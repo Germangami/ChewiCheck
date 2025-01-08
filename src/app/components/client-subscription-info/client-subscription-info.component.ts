@@ -30,6 +30,7 @@ export class ClientSubscriptionInfoComponent {
   set getCurrentUser(user: User) {
     if (user) {
       this.currentUser = user;
+      this.changeDetectorRef.detectChanges()
       console.log(this.user, 'USER CHECK')
     }
   }

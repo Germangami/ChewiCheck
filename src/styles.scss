@@ -73,7 +73,6 @@ body {
   color: red !important;
 }
 
-
 .mat-calendar-table-header th {
   color: var(--tg-theme-text-color) !important;
 }
@@ -95,15 +94,10 @@ body {
 }
 
 
-//MAT-CARD
-// .mat-mdc-card-outlined {
-//   background-color: var(--tg-theme-text-color) !important;
-// }
-
 .mat-mdc-card {
   background-color: var(--tg-theme-bg-color) !important;
   outline: 0.5px solid var(--tg-theme-text-color) !important;
-  border-width: 0 !important;
+  border-width: 1px !important;
   border-color: unset !important;
 }
 

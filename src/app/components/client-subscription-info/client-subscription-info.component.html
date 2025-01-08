@@ -1,4 +1,4 @@
-@if (user && currentUser) {
+@if (user || currentUser) {
 
   @if (user.membershipType) {
     <div class="client-subscription-info ">
@@ -10,6 +10,7 @@
         </mat-form-field>
       </p>
 
+      <p>ASKDHASKJDHASJL</p>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>{{user.nickname ? 'Никнейм добавлен' : 'Добавить никнейм'}}</mat-label>
@@ -56,28 +57,33 @@
  } 
 
  @if(currentUser && !user) {
-  @if(currentUser.membershipType) {
+  <h1>TUTA</h1>
+  @if(currentUser?.membershipType) {
     <div class="client-subscription-info ">
 
-      <mat-form-field appearance="outline">
-        <mat-label>Заметка</mat-label>
-        <textarea [placeholder]="currentUser.note ? currentUser.note : 'Ожидайте'" [readonly]="!isNoteChange" matInput></textarea>
-        <mat-icon matSuffix>{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>{{currentUser.nickname ? 'Никнейм добавлен' : 'Никнейм не добавлен'}}</mat-label>
-        <input matInput 
-        [readonly]="!isNickNameChange"
-        [placeholder]="currentUser.nickname ? currentUser.nickname : 'Ожидайте'"
-        (input)="addUserNickName($event)">
-        <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
-      </mat-form-field>
-  
-      <p>Дата начала: {{ currentUser.startDate }}</p>
-      <p>Дата окончания: {{ currentUser.endDate }}</p>
-      <p>Всего занятий: {{ currentUser.totalTrainings }}</p>
-      <p>Осталось занятий: {{ currentUser.remainingTrainings }}</p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Заметка</mat-label>
+          <textarea [placeholder]="currentUser.note ? currentUser.note : 'Ожидайте'" [readonly]="!isNoteChange" matInput></textarea>
+          <mat-icon matSuffix>{{isNoteChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>{{currentUser.nickname ? 'Никнейм добавлен' : 'Никнейм не добавлен'}}</mat-label>
+          <input matInput 
+          [readonly]="!isNickNameChange"
+          [placeholder]="currentUser.nickname ? currentUser.nickname : 'Ожидайте'"
+          (input)="addUserNickName($event)">
+          <mat-icon matSuffix (click)="changeUserNickName($event)">{{isNickNameChange ? 'edit' : 'sentiment_very_satisfied'}}</mat-icon>
+        </mat-form-field>
+      </p>
+
+      <p>Дата начала: {{ currentUser?.startDate }}</p>
+      <p>Дата окончания: {{ currentUser?.endDate }}</p>
+      <p>Всего занятий: {{ currentUser?.totalTrainings }}</p>
+      <p>Осталось занятий: {{ currentUser?.remainingTrainings }}</p>
   
       <div class="button-container">
         @if (isNickNameChange && newNickName) {

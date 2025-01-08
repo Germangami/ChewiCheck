@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject, model} from '@angular/core';
 import {ClientSubscriptionInfoComponent} from "../../components/client-subscription-info/client-subscription-info.component";
 import {ClientListComponent} from '../../components/client-list/client-list.component';
 import {MatCardModule} from '@angular/material/card';
@@ -13,17 +13,24 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { ApiService } from '../../shared/services/api.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
+  providers: [provideNativeDateAdapter()],
   imports: [
     MatCardModule,
     ClientSubscriptionInfoComponent, 
     ClientListComponent,
     DatepickerComponent,
     CommonModule,
-    MatFormFieldModule, MatInputModule, MatIconModule
+    MatFormFieldModule, MatInputModule, MatIconModule,
+    MatCardModule, MatDatepickerModule,
+    MatButtonModule
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
@@ -31,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class DashboardComponent implements OnInit {
   telegramService = inject(TelegraService).initTelegramWebApp();
+  apiService = inject(ApiService);
   store = inject(Store);
   changeDetectorRef = inject(ChangeDetectorRef);
 
@@ -41,6 +49,9 @@ export class DashboardComponent implements OnInit {
   users: User[];
   tgId: number;
   currentUser: User;
+  isDateSelected: boolean;
+
+  selected = model<Date | null>(null);
 
   ngOnInit(): void {
     this.getUsers();
@@ -71,4 +82,19 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+
+  markAttendance() {
+    if (this.currentUser.tgId) {
+      const tgId: number = this.tgId;
+      this.apiService.markAttendance(tgId).subscribe({
+        next: (response) => console.log('Успех:', response),
+        error: (error) => console.error('Ошибка:', error.error.message),
+      });
+    }
+  }
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    return day !== 2 && day !== 4 && day !== 6 && day !== 0;
+  };
 }
